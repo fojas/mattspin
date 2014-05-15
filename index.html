@@ -1,0 +1,70 @@
+
+<html>
+<head>
+<title>MATTSPIN</title>
+</title>
+
+
+<script>
+
+var time
+var output
+
+function Init(){
+  time = 1;
+  StartTimer()
+}
+
+function convertOutput(){
+  var hours = 0
+  var mins = 0
+  var secs = time
+  
+  while(secs >= 60){
+    secs -= 60;
+    mins += 1;
+  }
+  
+  if(secs < 10){
+    secs = "0" + secs;
+  }
+  
+  while(mins >= 60){
+    mins -= 60;
+    hours += 1;
+  }
+  
+  if(mins < 10){
+    mins = "0" + mins;
+  }
+  
+  output = hours + ":" + mins + ":" + secs;
+}
+
+function StartTimer(){
+  time += 1;
+  convertOutput();
+  document.getElementById("time").innerHTML = output;
+  self.setTimeout("StartTimer()", 1000);
+}
+
+</script>
+
+</head>
+<body onLoad="javascript:Init()" bgcolor="black">
+<img src="flip.gif" width="100%" />
+<div style="text-align:center; color:white; font-size:14pt; font-weight:bold">
+
+
+
+You've been spinning for <span id="time">00:00:00</span>.
+</div>
+<audio id="song" loop="loop" autoplay="autoplay">
+  <source src="sound.ogg" type="audio/ogg">
+  <source src="sound.mp3" type="audio/mpeg">
+</audio>
+</body>
+
+
+</html>
+
